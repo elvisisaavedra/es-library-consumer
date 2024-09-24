@@ -10,15 +10,20 @@ import {
   DialogTrigger,
   Accordion,
   AccordionItem,
+  ToastProvider,
+  useToast,
 } from 'es-library-ui'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const { toast } = useToast()
 
   return (
     <>
+      <ToastProvider placement={'topRight'} />
+
       <div className="card">
         <Button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -30,6 +35,19 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <Button
+        onClick={() => {
+          toast({
+            description: 'Friday, February 10, 2023 at 5:57 PM',
+            variant: 'warning',
+            duration: 10000000,
+          })
+        }}
+        variant={'secondary'}
+      >
+        Show Notification
+      </Button>
 
       <Dialog>
         <DialogTrigger asChild>
